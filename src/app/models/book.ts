@@ -4,5 +4,6 @@ export class Book{
     ShortDesc : string;
     Description : string;
     Price : number;
+    Author:string;
     PictureUrl: string;
 }
