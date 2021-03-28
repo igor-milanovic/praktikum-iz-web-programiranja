@@ -1,15 +1,16 @@
-<div class="col-lg-3 col-md-4 col-sm-6 my-md-5 my-sm-2">
+
     <div class="card">
-        <a data-toggle="modal" data-target="#exampleModalCenter1"><img class="card-img-top img-fluid"
+        <a data-toggle="modal" (click)="prikaziModal(book)"><img class="card-img-top img-fluid"
                 src="assets/images/{{book.PictureUrl}}" alt="{{book.Title}}"></a>
-        <div class="card-body cb">
+        <div class="card-body cb" (click)="prikaziModal(book)">
             <!-- Id : number;
             Title : string;
             ShortDesc : string;
             Description : string;
             Price : number;
-            PictureUrl: string; -->
-            <a data-toggle="modal" data-target="#exampleModalCenter1">
+            PictureUrl: string;
+        Author -->
+            <a data-toggle="modal" data-target="#exampleModalCenter{{book.Id}}">
                 <h5 class="card-title">{{book.Title}}</h5>
             </a>
             <p class="card-text ct">{{book.ShortDesc}}</p>
@@ -18,25 +19,6 @@
             <small class="text-muted">{{book.Author}}</small>
         </div>
     </div>
-</div>
 
- <!-- Modal -->
- <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
- aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalCenterTitle">{{book.Title}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-         </div>
-         <div class="modal-body">
-            treba LONG {{book.ShortDesc}}{{book.ShortDesc}}{{book.ShortDesc}}
-         </div>
-         <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-     </div>
- </div>
-</div>
+
+

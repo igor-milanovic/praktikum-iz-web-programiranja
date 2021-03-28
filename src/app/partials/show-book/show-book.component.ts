@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from 'src/app/models/book';
 
 @Component({
@@ -13,18 +13,22 @@ export class ShowBookComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var e = `{
-      "Id":3,
-      "Title" :  "Knjiga mrtvih duša",
-      "ShortDesc" : "Nastvak svetskog bestselera 'Biblioteka mrtvih'. Otkrijte da li je najveca misterija covecanstva otkrivena!",
-      "Desc" : "",
-      "Price" : 899,
-      "PictureUrl" :  "Knjiga mrtvih dusa.jpg"
-  }`;
-  var b = JSON.parse(e);
-  console.log(b);
-    this.book = b;
+  //   var e = `{
+  //     "Id":3,
+  //     "Title" :  "Knjiga mrtvih duša",
+  //     "ShortDesc" : "Nastvak svetskog bestselera 'Biblioteka mrtvih'. Otkrijte da li je najveca misterija covecanstva otkrivena!",
+  //     "Desc" : "",
+  //     "Price" : 899,
+  //     "PictureUrl" :  "Knjiga mrtvih dusa.jpg"
+  // }`;
+  // var b = JSON.parse(e);
+  // console.log(b);
+  //   this.book = b;
   }
-
+ @Output() emiter = new EventEmitter<any>();
  @Input() book: Book;
+
+ prikaziModal(b : Book){
+  this.emiter.emit(b);
+ }
 }

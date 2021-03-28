@@ -33,11 +33,13 @@
 <div class="container ">
     <div class="row ">
         <div class="col">
-            <h2 class="display-2 text-center mt-2">Akcija</h2>
+            <h2 class="display-2 text-center mt-2" (click)="test();">Akcija</h2>
         </div>
     </div>
+
     <div class="row my-5">
-            <div class="col-12 col-sm-6  col-lg-3 mt-3">
+
+            <!-- <div class="col-12 col-sm-6  col-lg-3 mt-3">
             <div class="card ">
                 <a data-toggle="modal" data-target="#exampleModalCenter1"><img class="card-img-top img-fluid"
                         src="assets/images/Da Vinicijev Kod.jpg" alt="Da Vinčijev Kod"></a>
@@ -52,6 +54,7 @@
                 </div>
             </div>
         </div>
+
             <div class="col-12 col-sm-6  col-lg-3 mt-3">
             <div class="card ">
                 <a data-toggle="modal" data-target="#exampleModalCenter2"><img class="card-img-top img-fluid"
@@ -68,6 +71,7 @@
                 </div>
             </div>
         </div>
+        
             <div class="col-12 col-sm-6  col-lg-3 mt-3">
             <div class="card ">
                 <a data-toggle="modal" data-target="#exampleModalCenter3"><img class="card-img-top img-fluid"
@@ -98,7 +102,37 @@
                     <small class="text-muted">Ju Nesbes</small>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <ng-container  *ngFor= "let b of books">
+            <div class="col-12 col-sm-6  col-lg-3 mt-3">
+            <app-show-book [book]="b" (emiter)="bookEmited($event)"></app-show-book>
+            </div>
+        </ng-container>
+
+        
     </div>
 </div>
 
+<app-show-book-modal *ngFor= "let b of books" [book]="b" ></app-show-book-modal>
+
+
+<!-- <div class="modal-wrapper" *ngIf="showPrintModal">
+    <div class="close" (click)="showPrintModal = false"></div>
+  
+    <div class="content">
+      <div class="title">Štampa Uspešna?</div>
+      <div class="text">Da li je polisa uspešno odštampana? </div>
+      <div class="actions">
+        <button class="custom-button smaller" >ne</button>
+        <button class="custom-button smaller green" >da</button>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+  <div *ngIf="prikaziModal">
+    <app-modal-complete [modal]="modal" (emiter)="modalEmited($event)"></app-modal-complete>
+  </div>
