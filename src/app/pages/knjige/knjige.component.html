@@ -1,0 +1,18 @@
+<div class="container ">
+    <div class="row ">
+        <div class="col">
+            <h2 class="display-2 text-center">Knjige</h2>
+        </div>
+    </div>
+    <div class="row " >
+        <ng-container  *ngFor= "let b of books">
+            <div class="col-lg-3 col-md-4 col-sm-6 my-md-5 my-sm-2" >
+            <app-show-book [book]="b" (emiter)="showBookModal($event)"></app-show-book>
+            </div>
+        </ng-container>
+</div>
+</div>
+
+<div *ngIf="prikaziModal">
+    <app-modal-complete [modal]="modal" (emiter)="bookModalEmited($event)"></app-modal-complete>
+</div>

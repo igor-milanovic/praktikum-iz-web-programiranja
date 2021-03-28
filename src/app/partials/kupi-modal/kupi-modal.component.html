@@ -1,0 +1,65 @@
+<div class="modal-wrapper" *ngIf="showModal">
+    <div class="close" (click)="showModal = false"></div>
+  
+    <div class="content">
+      <div class="title">Kupovina</div>
+      <div class="text">Unesite podatke sa kartice</div>
+
+        <div class="actions" >
+
+          <form [formGroup]="fg" >
+            <p>
+                <label for="id">Ime vlasnika</label><br/>
+                <input 
+                type="text"  
+                name="ime" 
+                formControlName="ime"
+                [ngClass]="{ 'error': fg.get('ime').errors && fg.get('ime').touched }"
+                >
+                <ng-container *ngIf="fg.get('ime').errors && fg.get('ime').touched">
+                  <div class="error-label" >
+                      Minimalna duzina za ovo polje je 3 a maksimalna je 15 karaktera
+                  </div>
+              </ng-container>
+            </p><br/><br/>
+            <p>
+                <label for="name">Prezime vlasnika</label><br/>
+                <input 
+                type="text"  
+                name="prezime" 
+                formControlName="prezime"
+                [ngClass]="{ 'error': fg.get('prezime').errors && fg.get('prezime').touched }"
+                >
+                <ng-container *ngIf="fg.get('prezime').errors && fg.get('prezime').touched">
+                  <div class="error-label" >
+                      Minimalna duzina za ovo polje je 4 a maksimalna je 20 karaktera
+                  </div>
+              </ng-container>
+            </p><br/><br/>
+            <p>
+              <label for="name">Broj kartice</label><br/>
+              <input 
+              type="number"  
+              name="kartica" 
+              formControlName="kartica"
+              [ngClass]="{ 'error': fg.get('kartica').errors && fg.get('kartica').touched }"
+              >
+              <ng-container *ngIf="fg.get('kartica').errors && fg.get('kartica').touched">
+                <div class="error-label" >
+                    Broj kartice ima 16 karaktera
+                </div>
+            </ng-container>
+          </p><br/><br/>
+            <input type="button" (click)="da()" [disabled]="!fg.valid" value="Kupi"/>
+            <input type="button" (click)="ne()" value="Nazad" style="margin-left: 60px;"/>
+            <br/>
+        </form>
+        
+        </div>
+
+    <br><br><br><br>
+    </div>
+  </div>
+
+
+

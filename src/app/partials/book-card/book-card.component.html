@@ -1,0 +1,16 @@
+    <a data-toggle="modal" (click)="prikaziModal(book)" data-target="#exampleModalCenter{{book.Id}}">
+        <img class="card-img-top img-fluid" src="assets/images/{{book.PictureUrl}}" alt="{{book.Title}}"></a>
+    <div class="card-body" (click)="prikaziModal(book)">
+        <a data-toggle="modal" data-target="#exampleModalCenter1">
+            <h5 class="card-title">{{book.Title}}</h5>
+        </a>
+        <p class="card-text">{{book.ShortDesc}}</p>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">{{book.Author}}</small>
+    </div>
+
+
+
+
+

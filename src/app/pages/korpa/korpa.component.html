@@ -1,0 +1,143 @@
+
+    <div class="container ">
+
+        <div class="row d-none d-md-block">
+            <div class="col">
+                <h3 class="display-4 text-center mb-5">Sadržaj korpe</h3>
+            </div>
+        </div>
+        <div class="row d-none d-md-block">
+            <!-- <ng-container *ngIf="sviItemi.length < 1 ; then nemaItema; else imaItema" ></ng-container> -->
+            <div class="col ">
+                <div *ngIf="sviItemi.length < 1">
+                    <h5 class="display-4 text-center mb-5" >Vaša korpa je prazna</h5>
+                </div>
+               
+                
+                <div #imaItema>
+                    <table class="table text-center korpa" *ngIf="sviItemi.length >= 1">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" colspan="2">Knjiga</th>
+                            <th scope="col">Cena</th>
+                            <th scope="col">Količina</th>
+                            <th scope="col">Akcije</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <ng-container *ngFor="let i of sviItemi; let rb=index">
+
+                          <!-- jedan red -->
+                        
+                          <tr>
+                            <th scope="row" rowspan="2">{{rb+1}}</th>
+
+                            <td rowspan="2">
+                                <img src="assets/images/{{i.Knjiga.PictureUrl}}" width="80" height="100"
+                                    alt="{{i.Knjiga.Title}}"
+                                    title="{{i.Knjiga.Title}}">
+                            </td>
+                            <td>{{i.Knjiga.Author}}</td>
+                            <td rowspan="2">{{i.Knjiga.Price}}</td>
+                            <td rowspan="2">{{i.Kolicina}}</td>
+                            <td>
+                                <span class="align-top action-button">
+                                    <button type="button" class="btn btn-secondary dugme" (click)="dodaj(i)"> <i class="far fa-plus-square"></i></button>  
+                                </span>
+
+
+                                <br />
+                            </td>
+                            <td rowspan="2" class="action-button">
+                                <span class="align-middle">
+                                    <button type="button" class="btn btn-secondary dugme" (click)="obrisi(i)"><i class="far fa-trash-alt"></i></button>  
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bottom_row">{{i.Knjiga.Title}}</td>
+                            <td class="bottom_row action-button">
+                                <span class="align-bottom">
+                                    <button type="button" class="btn btn-secondary dugme" (click)="smanji(i)"><i class="far fa-minus-square"></i></button> 
+                                </span>
+
+                            </td>
+                        </tr>
+                    
+                    <!-- kraj reda -->
+
+                       </ng-container>
+                      
+
+
+                        <tr>
+                            <td colspan="3"></td>
+                            <td >Ukupno</td>
+                            <td >{{ukupanIznos}}</td>
+                            <td> 
+                                
+                                
+                                <button type="button" class="btn btn-secondary dugme"(click)="kupi()">Kupi</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table></div>
+                
+                <br />
+            </div>
+        </div>
+
+        <hr class="my-3">
+        <div class="row d-none d-md-block">
+            <div class="col">
+                <h3 class="display-4 text-center mb-5" (click)="test();">Preporučeno za Vas</h3>
+            </div>
+        </div>
+        <div class="row d-none d-md-block mb-2">
+            <div class="container">
+                <div class="card-deck">
+
+                    <!-- <ng-container  *ngFor= "let b of knjigeNaAkciji">
+                        <div class="card">
+                            <app-book-card [book]="b" (emiter)="showBookModal($event)"></app-book-card>
+                        </div>
+                      
+                       
+                    </ng-container> -->
+
+                    <ng-container  *ngFor= "let b of knjigeNaAkciji">
+                   <div class="card"> 
+                        <a data-toggle="modal" data-target="#exampleModalCenter{{b.Id}}" (click)="showBookModal(b)"><img class="card-img-top img-fluid"
+                                src="assets/images/{{b.PictureUrl}}" alt="{{b.Title}}"></a>
+                        <div class="card-body" (click)="showBookModal(b)">
+                            <a data-toggle="modal" data-target="#exampleModalCenter{{b.Id}}">
+                                <h5 class="card-title">{{b.Title}}</h5>
+                            </a>
+                            <p class="card-text">{{b.ShortDesc}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{b.Author}}</small>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="prikaziModal">
+        <app-modal-complete [modal]="modal" (emiter)="bookModalEmited($event)"></app-modal-complete>
+      </div>
+
+    <div *ngIf="kupiModal">
+        <app-kupi-modal  (emiter)="kupiModalEmited($event)"></app-kupi-modal>
+    </div>
+
+    <div *ngIf="potvrdiModal">
+        <app-modal-complete [modal]="modal" (emiter)="potvrdiModalEmited($event)"></app-modal-complete>
+    </div>

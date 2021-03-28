@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row ">
+    <div class="container text-center">
+      <h2 class="display-3">Kontakt</h2>
+    </div>
+  </div>
+
+  <div class="row text-center bg-light my-5">
+    <div class="col-12  my-3">
+      <h3>Poručite:</h3>
+    </div>
+    <div class="col-12">
+      <form [formGroup]="fg">
+        <div class="form-group">
+          <label for="ime">Vaše ime</label>
+          <input type="text" class="form-control" id="ime" placeholder="Vaše ime" formControlName="ime"
+            [ngClass]="{ 'error': fg.get('ime').errors && fg.get('ime').touched }">
+          <ng-container *ngIf="fg.get('ime').errors && fg.get('ime').touched">
+            <div class="error-label">
+              Minimalna duzina za ovo polje je 3 a maksimalna je 15 karaktera
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="form-group">
+          <label for="adresa">Vaša adresa</label>
+          <input type="text" class="form-control" id="adresa" placeholder="Vaša adresa" formControlName="adresa"
+            [ngClass]="{ 'error': fg.get('adresa').errors && fg.get('adresa').touched }">
+          <ng-container *ngIf="fg.get('adresa').errors && fg.get('adresa').touched">
+            <div class="error-label">
+              Minimalna duzina za ovo polje je 5 karaktera
+            </div>
+          </ng-container>
+        </div>
+          <div class="form-group">
+            <label for="email">Vaš email</label>
+            <input type="text" 
+            class="form-control" id="email" placeholder="Vaš email"
+             formControlName="email"
+              [ngClass]="{ 'error': fg.get('email').errors && fg.get('email').touched }">
+            <ng-container *ngIf="fg.get('email').errors && fg.get('email').touched">
+              <div class="error-label">
+                Email nije validan
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <label for="porudzbina">Porudžbina</label>
+            <textarea 
+            class="form-control" 
+            id="porudzbina"
+             rows="5" 
+             formControlName="poruka"
+            [ngClass]="{ 'error': fg.get('poruka').errors && fg.get('poruka').touched }">
+            </textarea>
+            <ng-container *ngIf="fg.get('poruka').errors && fg.get('poruka').touched">
+              <div class="error-label">
+                Minimalan broj akraktera je 50
+              </div>
+            </ng-container>
+          </div>
+
+
+
+          <button type="button" class="btn btn-secondary" [disabled]="!fg.valid" (click)="posalji()">Pošalji</button>
+      </form>
+    </div>
+  </div>
+
+</div>
