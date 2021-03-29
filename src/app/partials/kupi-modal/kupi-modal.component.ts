@@ -16,7 +16,7 @@ export class KupiModalComponent implements OnInit {
   fg = new FormGroup({ 
     ime: new FormControl(null,[Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
     prezime: new FormControl(null, [Validators.required, Validators.minLength(4),  Validators.maxLength(20)]), 
-    kartica: new FormControl(null, [Validators.required,Validators.pattern("^[0-9]*$"), Validators.minLength(16),Validators.maxLength(16)]), 
+    kartica: new FormControl(null, [Validators.required,Validators.pattern("[0-9]{13}")]), 
   });
   constructor() { }
 
